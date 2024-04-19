@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 const el = document.getElementById('root');
-ReactDOM.createRoot(el);
+const root = ReactDOM.createRoot(el);
 
-ShadowRoot.render(<App />);
+root.render(<App />);
