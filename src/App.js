@@ -4,19 +4,19 @@ function App() {
   return (
     <div>
       <div>
-        <Button>Penis Pop</Button>
+        <Button success rounded outline>Penis Pop</Button>
       </div>
       <div>
-        <Button>Titty Top</Button>
+        <Button danger outline>Titty Top</Button>
       </div>
       <div>
-        <Button>Clitty Cop</Button>
+        <Button warning>Clitty Cop</Button>
       </div>
       <div>
-        <Button>Bitty Bop</Button>
+        <Button secondary outline>Bitty Bop</Button>
       </div>
       <div>
-        <Button>Shitty Shop</Button>
+        <Button primary rounded>Shitty Shop</Button>
       </div>
     </div>
   )
