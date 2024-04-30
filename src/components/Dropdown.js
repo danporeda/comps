@@ -1,35 +1,39 @@
 import { useState } from 'react';
 import { GoChevronDown, GoChevronLeft } from 'react-icons/go';
 
-function Dropdown({ options }) {
-  const [selectedOption, setSelectedOption] = useState('Select...');
+function Dropdown({ options, selection, onSelect }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleOptionClick = (label) => {
-    setSelectedOption(label);
+  const handleOptionClick = (option) => {
+    onSelect(option);
     setMenuOpen(false);
   }
 
   const handleMenuClick = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen((currentMenuOpen) => !currentMenuOpen);
   }
 
   const renderedOptions = options.map((option) => {
     return (
-      <div onClick={() => handleOptionClick(option.label)}>
+      <div key={option.value} onClick={() => handleOptionClick(option)}>
         {option.value}
       </div>
     )
-  })
+  });
   
+  let content = 'Select...';
+  if (selection) {
+    content = selection.label;
+  }
+
   const icon = <span className="text-2xl">
     {menuOpen ? <GoChevronDown /> : <GoChevronLeft />}
   </span>
 
   return (
     <div>
-      <div className="flex justify-between p-3 bg-gray-50 border-b items-center cursor-pointer" onClick={() => handleMenuClick()}>
-        {selectedOption}
+      <div onClick={handleMenuClick} className="flex justify-between p-3 bg-gray-50 border-b items-center cursor-pointer">
+        {content}
         {icon}
       </div>
       <div>{menuOpen && renderedOptions}</div>
