@@ -20,11 +20,6 @@ function Dropdown({ options, selection, onSelect }) {
       </div>
     )
   });
-  
-  let content = 'Select...';
-  if (selection) {
-    content = selection.label;
-  }
 
   const icon = <span className="text-2xl">
     {menuOpen ? <GoChevronDown /> : <GoChevronLeft />}
@@ -33,7 +28,7 @@ function Dropdown({ options, selection, onSelect }) {
   return (
     <div>
       <div onClick={handleMenuClick} className="flex justify-between p-3 bg-gray-50 border-b items-center cursor-pointer">
-        {content}
+        {selection?.label || 'Select...'}
         {icon}
       </div>
       <div>{menuOpen && renderedOptions}</div>
