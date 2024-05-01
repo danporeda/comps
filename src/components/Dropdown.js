@@ -15,7 +15,7 @@ function Dropdown({ options, value, onChange }) {
 
   const renderedOptions = options.map((option) => {
     return (
-      <div key={option.value} onClick={() => handleOptionClick(option)}>
+      <div className="hover:bg-sky-100 rounded cursor-pointer p-1" key={option.value} onClick={() => handleOptionClick(option)}>
         {option.value}
       </div>
     )
@@ -26,12 +26,19 @@ function Dropdown({ options, value, onChange }) {
   </span>
 
   return (
-    <div>
-      <div onClick={handleMenuClick} className="flex justify-between p-3 bg-gray-50 border-b items-center cursor-pointer">
+    <div className="w-48 relative">
+      <div 
+        onClick={handleMenuClick} 
+        className="flex justify-between items-center cursor-pointer border rounded p-3 shadow bg-white w-full"
+      >
         {value?.label || 'Select...'}
         {icon}
       </div>
-      <div>{menuOpen && renderedOptions}</div>
+      {menuOpen && (
+        <div className="absolute top-full border rounded p-3 shadow bg-white w-full">
+          {renderedOptions}
+        </div>
+      )}
     </div>
   )
 }
