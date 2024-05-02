@@ -21,7 +21,7 @@ function NavigationProvider({children}) {
     setCurrentPath(to);
   };
 
-  return <NavigationContext.Provider value={{}}>
+  return <NavigationContext.Provider value={{currentPath, navigate}}>
     <div>
       <button onClick={() => navigate('/accordion')}>Navigate to Accordion</button>
       <button onClick={() => navigate('/Dropdown')}>Navigate to Dropdown</button>

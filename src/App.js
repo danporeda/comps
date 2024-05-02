@@ -1,6 +1,12 @@
+import Link from './components/Link';
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <Link to="/accordion">Go to accordion</Link>
+      <Link to="/Dropdown">Go to Dropdown</Link>
+    </div>
+  );
 }
 
 export default App;
