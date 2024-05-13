@@ -3,7 +3,25 @@ import Button from '../components/Button';
 import Panel from '../components/Panel';
 
 const reducer = (state, action) => {
-  
+  if (action.type === 'increment-count') {
+    return {
+      ...state,
+      count: state.count + action.payload
+    };
+  } else if (action.type === 'change-value') {
+    return {
+      ...state,
+      valueToAdd: action.payload
+    }
+  } else if (action.type === 'submit-value') {
+    return {
+      ...state,
+      count: state.count + state.valueToAdd,
+      valueToAdd: 0
+    }
+  }
+
+  return state;
 }
 
 function CounterPage({ initialCount }) {
@@ -15,27 +33,40 @@ function CounterPage({ initialCount }) {
   });
 
   const increment = () => {
-    // setCount(count + 1)
+    dispatch({
+      type: 'increment-count',
+      payload: 1
+    });
   };
 
   const decrement = () => {
-    // setCount(count -1)
+    dispatch({
+      type: 'increment-count',
+      payload: -1
+    });
   };
 
   const handleChange = (event) => {
     const value = parseInt(event.target.value) || 0;
+    dispatch({
+      type: 'change-value',
+      payload: value
+    })
     // setValueToAdd(value);
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    dispatch({
+      type: 'submit-value',
+    })
     // setCount(count + valueToAdd);
     // setValueToAdd(0);
   }
 
   return (
     <Panel className="m-3">
-      <h1 className="text-lg">Count is {count}</h1>
+      <h1 className="text-lg">Count is {state.count}</h1>
       <div className="flex flex-row">
         <Button primary onClick={increment}>
           increment
@@ -48,7 +79,7 @@ function CounterPage({ initialCount }) {
       <form onSubmit={handleSubmit}>
         <label>Add a Lot!</label>
         <input 
-          value={valueToAdd || ''}
+          value={state.valueToAdd || ''}
           onChange={handleChange}
           type="number" 
           className="p-1 m-3 bg-gray-50 border border-gray-300"
