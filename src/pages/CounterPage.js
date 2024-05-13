@@ -29,23 +29,23 @@ const reducer = (state, action) => {
 
   // if (action.type === INCREMENT_COUNT) {
   //   return {
-      // ...state,
-      // count: state.count + action.payload
+  //     ...state,
+  //     count: state.count + action.payload
   //   };
   // } else if (action.type === SET_VALUE_TO_ADD) {
-    // return {
-    //   ...state,
-    //   valueToAdd: action.payload
-    // }
+  //   return {
+  //     ...state,
+  //     valueToAdd: action.payload
+  //   }
   // } else if (action.type === SUBMIT_VALUE) {
-    return {
-      ...state,
-      count: state.count + state.valueToAdd,
-      valueToAdd: 0
-    }
+  //   return {
+  //     ...state,
+  //     count: state.count + state.valueToAdd,
+  //     valueToAdd: 0
+  //   }
   // }
 
-  return state;
+  // return state;
 }
 
 function CounterPage({ initialCount }) {
