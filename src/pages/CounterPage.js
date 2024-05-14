@@ -4,27 +4,38 @@ import Button from '../components/Button';
 import Panel from '../components/Panel';
 
 const INCREMENT_COUNT = 'increment-count';
+const DECREMENT_COUNT = 'decrement-count';
 const SET_VALUE_TO_ADD = 'change-value';
 const SUBMIT_VALUE = 'submit-value';
 
 const reducer = (state, action) => {
   switch (action.type) {
     case INCREMENT_COUNT:
-      return {
-        ...state,
-      count: state.count + action.payload
-      };
+      state.count = state.count + 1;
+      return;
+      // return {
+      //   ...state,
+      // count: state.count + action.payload
+      // };
+    case DECREMENT_COUNT:
+      state.count = state.count - 1;
+      return;
     case SET_VALUE_TO_ADD:
-      return {
-        ...state,
-        valueToAdd: action.payload
-      };
+      state.valueToAdd = action.payload;
+      return;
+      // return {
+      //   ...state,
+      //   valueToAdd: action.payload
+      // };
     case SUBMIT_VALUE:
-      return {
-        ...state,
-        count: state.count + state.valueToAdd,
-        valueToAdd: 0
-      };
+      state.count = state.count + state.valueToAdd;
+      state.valueToAdd = 0;
+      return;
+      // return {
+      //   ...state,
+      //   count: state.count + state.valueToAdd,
+      //   valueToAdd: 0
+      // };
     default: return state;
   }
 
@@ -52,7 +63,7 @@ const reducer = (state, action) => {
 function CounterPage({ initialCount }) {
   // const [count, setCount] = useState(initialCount);
   // const [valueToAdd, setValueToAdd] = useState(0);
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, dispatch] = useReducer(produce(reducer), {
     count: initialCount,
     valueToAdd: 0
   });
@@ -60,14 +71,14 @@ function CounterPage({ initialCount }) {
   const increment = () => {
     dispatch({
       type: INCREMENT_COUNT,
-      payload: 1
+      // payload: 1
     });
   };
 
   const decrement = () => {
     dispatch({
-      type: INCREMENT_COUNT,
-      payload: -1
+      type: DECREMENT_COUNT,
+      // payload: -1
     });
   };
 
